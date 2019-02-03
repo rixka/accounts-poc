@@ -9,10 +9,6 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
 })
 
-export interface IAccount extends mongoose.Document {
-  email: string
-}
-
 export const AccountSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
 })
