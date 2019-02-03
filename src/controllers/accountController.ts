@@ -6,3 +6,12 @@ export let allAccounts = (req: Request, res: Response) => {
     res.json(accounts)
   })
 }
+
+export let getAccount = (req: Request, res: Response) => {
+  Account.findById(req.params.id, (err: any, account: any) => {
+    if (err) {
+      res.status(404).json({ error: 'Not Found' })
+    }
+    res.json(account)
+  })
+}
