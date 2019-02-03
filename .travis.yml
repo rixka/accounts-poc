@@ -1,11 +1,14 @@
 language: node_js
 node_js:
-  - "9"
-  - "10"
-  - "11"
+  - 9
+  - 10
+  - 11
 
+services:
+  - docker
+    
 before_install:
-  -  npm install -g typescript
+  -  npm run mongo:up
 
 script:
   - npm test
