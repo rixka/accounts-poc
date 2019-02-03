@@ -31,10 +31,10 @@ describe('GET /health', () => {
 })
 
 describe('GET /random-url', () => {
-  it('should return 404 Not Found', () => {
-    return request(app)
+  it('should return 404 Not Found', done => {
+    request(app)
       .get('/random-url')
-      .expect(404)
+      .expect(404, done())
   })
 })
 
@@ -66,6 +66,30 @@ describe('GET /accounts/:id', () => {
   })
 })
 
+describe('POST /accounts', () => {
+  it('should return 400 Bad Request', done => {
+    request(app)
+      .post(route)
+      .send({ email: 'some@email.com' })
+      .expect(400, done())
+  })
+
+  it ('should return 400 Bad Request', (done) => {
+    request(app)
+      .post(route)
+      .send({email: 'some.email.com'})
+      .expect(400, done);
+  });
+
+  it('should return 201 Created', done => {
+    request(app)
+      .post(route)
+      .type('form')
+      .send({ email: 'tester@gmail.com' })
+      .expect(201, done())
+  })
+})
+
 describe('PUT /accounts/:id', () => {
   let ACCOUNT_ID: String = '5c5713029bcad21783c6b7ee'
   it('should return 404 Not Found', done => {
@@ -76,7 +100,9 @@ describe('PUT /accounts/:id', () => {
   })
 
   // it ('should return 400 Bad Request', (done) => {
-  //   request(app).put(`${route}/${ACCOUNT_ID}`).send({email: 'some.email.com'})
+  //   request(app)
+  //     .put(`${route}/${ACCOUNT_ID}`)
+  //     .send({email: 'some.email.com'})
   //     .expect(400, done);
   // });
 

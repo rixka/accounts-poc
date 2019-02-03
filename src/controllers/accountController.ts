@@ -17,6 +17,17 @@ export let getAccount = (req: Request, res: Response) => {
   })
 }
 
+export let addAccount = (req: Request, res: Response) => {
+let account = new Account(req.body)
+  account.save((err: any) => {
+    if (err) {
+      res.status(400).json({ error: 'Bad Request', message: req.body})
+    } else {
+      res.status(201).json(account)
+    }
+  })
+}
+
 export let updateAccount = (req: Request, res: Response) => {
   Account.findByIdAndUpdate({ _id: req.params.id }, req.body, err => {
     if (err) {
