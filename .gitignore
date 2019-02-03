@@ -1,0 +1,9 @@
+#=== LOGS === #
+logs
+*.log
+npm-debug.log*
+
+# === BUILD & TESTS === #
+dist
+coverage
+node_modules
