@@ -43,3 +43,23 @@ To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-n
 	* Takes in parameter a "id" and updates the account
 * DELETE `/accounts/{id}`
 	* Takes in parameter a "id" and deletes the account
+
+### MongoDB Database with Docker
+For the purpose of this exercise, I’m going to be using docker in order to quickly get a mongodb instance up and running on my local development machine.
+
+```shell
+npm run mongo:up
+npm run mongo:logs
+
+# Kill with fire
+npm mongo:down
+```
+
+Or if preferred:
+```shell
+docker-compose -f docker-compose-mongo-only.yml build
+docker-compose -f docker-compose-mongo-only.yml up --force-recreate -d
+
+# Kill with fire
+docker-compose -f docker-compose-mongo-only.yml down
+```

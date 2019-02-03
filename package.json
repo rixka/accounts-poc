@@ -6,7 +6,10 @@
   "scripts": {
     "build": "tsc",
     "postinstall": "npm run build",
-    "start": "node ./dist/app.js"
+    "start": "node ./dist/app.js",
+    "mongo:up": "docker-compose -f docker-compose-mongo-only.yml up --force-recreate -d",
+    "mongo:down": "docker-compose -f docker-compose-mongo-only.yml down",
+    "mongo:logs": "docker-compose -f docker-compose-mongo-only.yml logs -f"
   },
   "repository": {
     "type": "git",

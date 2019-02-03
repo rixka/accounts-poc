@@ -1,0 +1,14 @@
+[
+  {
+    "email": "info@helloworld.com"
+  },
+  {
+    "email": "foobar@helloworld.com"
+  },
+  {
+    "email": "hello@world.com"
+  },
+  {
+    "email": "hello@foobar.com"
+  }
+]
