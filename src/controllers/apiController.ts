@@ -3,7 +3,7 @@ let pkg = require(__dirname + '/../../package.json')
 
 export let index = (req: Request, res: Response) => {
   res.json({
-    message: 'hello world'
+    message: 'hello world',
   })
 }
 

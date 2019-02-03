@@ -3,6 +3,7 @@ import * as express from 'express'
 import * as bodyParser from 'body-parser'
 
 import * as apiController from './controllers/apiController'
+import * as accountController from './controllers/accountController'
 
 class App {
   public express: express.Application
@@ -23,6 +24,11 @@ class App {
   private routes(): void {
     this.express.get('/', apiController.index)
     this.express.get('/health', apiController.health)
+    this.express.get('/accounts', accountController.allAccounts)
+    this.express.get('/accounts/:id', accountController.getAccount)
+    this.express.post('/accounts', accountController.addAccount)
+    this.express.put('/accounts/:id', accountController.updateAccount)
+    this.express.delete('/accounts/:id', accountController.deleteAccount)
   }
 }
 

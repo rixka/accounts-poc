@@ -12,8 +12,8 @@
     "watch-node": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
     "prettier:base": "prettier --parser typescript --single-quote",
-    "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.ts\"",
-    "prettier:write": "npm run prettier:base -- --write \"src/**/*.ts\"",
+    "prettier:check": "npm run prettier:base -- --list-different \"**/**/*.ts\"",
+    "prettier:write": "npm run prettier:base -- --write \"**/**/*.ts\"",
     "docker:up": "docker-compose up --build -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f",
@@ -66,7 +66,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.9",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
@@ -76,6 +77,7 @@
     "@types/mongoose": "^5.3.12",
     "@types/morgan": "^1.7.35",
     "@types/supertest": "^2.0.2",
+    "@types/validator": "^10.9.0",
     "chai": "^4.2.0",
     "concurrently": "^4.1.0",
     "jest": "^21.2.1",
