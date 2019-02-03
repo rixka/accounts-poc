@@ -104,3 +104,24 @@ docker rmi `docker images --filter "dangling=true" -q --no-trunc`
 ```
 
 _Note: More information available [here](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)._
+
+## Future Work
+
+Warning: Not fit for production, more work required.
+
+* **LOGGING!!!!!!**
+* **LOGGING!!!!!!**
+* And more **logging** - possibly look into integrating sentry.
+* GraphQL.
+* Add possibility to paginate accounts.
+* Redis.
+* Build and push api image to a docker registry for production use.
+* Appropriate API documentation (i.e Swagger).
+* More meaningful Error messages (i.e Bad Request - invalid parameter).
+* Unit tests with mocks bypassing Express and MongoDB.
+* Breakdown the code into more modular components.
+* The tests should continue to grow (coverage is ~70%), separating them out may become necessary.
+* OAuth 2.0.
+* JSON transformation on the outputs, the `_id` is a bit unsightly.
+
+_Note: Feedback welcomed._
