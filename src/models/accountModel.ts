@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import { isEmail } from 'validator'
 import * as mongoose from 'mongoose'
 
 // TODO: use env vars
@@ -10,7 +10,15 @@ mongoose.connect(uri, {
 })
 
 export const AccountSchema = new mongoose.Schema({
-  email: { type: String, unique: true, required: true },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    validate: {
+      validator: email => validator.isEmail(email),
+      message: '{VALUE} is not a valid email'
+    }
+  },
 })
 
 const Account = mongoose.model('Account', AccountSchema)
