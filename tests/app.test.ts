@@ -55,3 +55,13 @@ describe('GET /accounts/:id', () => {
       .expect(200, done());
   });
 });
+
+describe('DELETE /accounts/:id', () => {
+  const route: String = '/accounts';
+  const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b';
+
+  it('should return 204 No Content', (done) => {
+    request(app).delete(`${route}/${GOOD_ACCOUNT}`)
+      .expect(204, done());
+  });
+});

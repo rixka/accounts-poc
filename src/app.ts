@@ -28,7 +28,7 @@ class App {
     this.express.get('/accounts/:id', accountController.getAccount)
     // this.express.post('/accounts', accountController.addAccount)
     // this.express.put('/accounts/:id', accountController.updateAccount)
-    // this.express.delete('/accounts/:id', accountController.deleteAccount)
+    this.express.delete('/accounts/:id', accountController.deleteAccount)
   }
 }
 

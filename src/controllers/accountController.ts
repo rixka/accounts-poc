@@ -15,3 +15,9 @@ export let getAccount = (req: Request, res: Response) => {
     res.json(account)
   })
 }
+
+export let deleteAccount = (req: Request, res: Response) => {
+  Account.deleteOne({ _id: req.params.id }, err => {
+    res.status(204).send()
+  })
+}
