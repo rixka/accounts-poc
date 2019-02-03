@@ -39,3 +39,19 @@ describe('GET /accounts', () => {
       .expect(200, done());
   });
 });
+
+describe('GET /accounts/:id', () => {
+  const route: String = '/accounts';
+  const BAD_ACCOUNT: String = '123456789';
+  const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b';
+
+  it('should return 404 Not Found', (done) => {
+    request(app).get(`${route}/${BAD_ACCOUNT}`)
+      .expect(404, done);
+  });
+
+  it('should return 200 OK', (done) => {
+    request(app).get(`${route}/${GOOD_ACCOUNT}`)
+      .expect(200, done());
+  });
+});
