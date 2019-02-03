@@ -1,4 +1,6 @@
 import { Request, Response } from 'express'
+import { isEmail } from 'validator'
+
 import Account from './../models/accountModel'
 
 export let allAccounts = (req: Request, res: Response) => {
@@ -18,10 +20,10 @@ export let getAccount = (req: Request, res: Response) => {
 }
 
 export let addAccount = (req: Request, res: Response) => {
-let account = new Account(req.body)
+  let account = new Account(req.body)
   account.save((err: any) => {
     if (err) {
-      res.status(400).json({ error: 'Bad Request', message: req.body})
+      res.status(400).json({ error: 'Bad Request', message: req.body })
     } else {
       res.status(201).json(account)
     }
@@ -29,7 +31,11 @@ let account = new Account(req.body)
 }
 
 export let updateAccount = (req: Request, res: Response) => {
-  Account.findByIdAndUpdate({ _id: req.params.id }, req.body, err => {
+  if (!isEmail(req.body.email)) {
+    return res.status(400).json({ error: 'Bad Request' })
+  }
+
+  Account.findByIdAndUpdate(req.params.id, req.body, err => {
     if (err) {
       res.status(404).json({ error: 'Not Found' })
     } else {

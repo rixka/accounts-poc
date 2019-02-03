@@ -74,17 +74,16 @@ describe('POST /accounts', () => {
       .expect(400, done())
   })
 
-  it ('should return 400 Bad Request', (done) => {
+  it('should return 400 Bad Request', done => {
     request(app)
       .post(route)
-      .send({email: 'some.email.com'})
-      .expect(400, done);
-  });
+      .send({ email: 'some.email.com' })
+      .expect(400, done)
+  })
 
   it('should return 201 Created', done => {
     request(app)
       .post(route)
-      .type('form')
       .send({ email: 'tester@gmail.com' })
       .expect(201, done())
   })
@@ -99,12 +98,12 @@ describe('PUT /accounts/:id', () => {
       .expect(404, done)
   })
 
-  // it ('should return 400 Bad Request', (done) => {
-  //   request(app)
-  //     .put(`${route}/${ACCOUNT_ID}`)
-  //     .send({email: 'some.email.com'})
-  //     .expect(400, done);
-  // });
+  it('should return 400 Bad Request', done => {
+    request(app)
+      .put(`${route}/${ACCOUNT_ID}`)
+      .send({ email: 'some.email.com' })
+      .expect(400, done)
+  })
 
   it('should return 204 No Content', done => {
     request(app)
