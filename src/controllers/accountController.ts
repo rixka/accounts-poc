@@ -1,9 +1,8 @@
 import { Request, Response } from 'express'
-let pkg = require(__dirname + '/../../package.json')
+import Account from './../models/accountModel'
 
 export let allAccounts = (req: Request, res: Response) => {
-  res.json([{
-    email: 'hello@world.com'
-  }])
+  let accounts = Account.find((err: any, accounts: any) => {
+    res.json(accounts)
+  })
 }
-
