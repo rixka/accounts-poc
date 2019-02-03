@@ -43,3 +43,64 @@ To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-n
 	* Takes in parameter a "id" and updates the account
 * DELETE `/accounts/{id}`
 	* Takes in parameter a "id" and deletes the account
+
+### MongoDB Database with Docker
+For the purpose of this exercise, I’m going to be using docker in order to quickly get a mongodb instance up and running on my local development machine.
+
+```shell
+npm run mongo:up
+npm run mongo:logs
+
+# Kill with fire
+npm mongo:down
+```
+
+Or if preferred:
+```shell
+docker-compose -f docker-compose-mongo-only.yml build
+docker-compose -f docker-compose-mongo-only.yml up --force-recreate -d
+
+# Kill with fire
+docker-compose -f docker-compose-mongo-only.yml down
+```
+
+### Quick Start with Docker
+
+```shell
+npm run docker:up
+npm run docker:logs
+
+# Kill with fire
+npm docker:down
+```
+
+Or if preferred:
+```shell
+docker-compose build
+docker-compose up
+
+# Kill with fire
+docker-compose down
+```
+
+Once the API container is running you can curl requests or navigate with the browser `http://localhost:3000/health`.
+
+#### Example - curl
+```
+# health check
+curl -v http://localhost:3000/health
+```
+
+### Quick testing
+```shell
+npm test
+```
+
+### Quick cleaning with Docker
+```shell
+docker rm `docker ps -aq`
+docker volume rm `docker volume ls -q -f dangling=true`
+docker rmi `docker images --filter "dangling=true" -q --no-trunc`
+```
+
+_Note: More information available [here](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)._
