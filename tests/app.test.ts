@@ -24,3 +24,18 @@ describe('GET /health', () => {
       });
   });
 });
+
+describe('GET /random-url', () => {
+  it('should return 404 Not Found', () => {
+    return request(app)
+      .get('/random-url')
+      .expect(404)
+  });
+});
+
+describe('GET /accounts', () => {
+  it('should return 200 OK', (done) => {
+    request(app).get('/accounts')
+      .expect(200, done());
+  });
+});
