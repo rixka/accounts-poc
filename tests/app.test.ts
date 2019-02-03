@@ -3,6 +3,11 @@ import {} from 'jest';
 import { expect, should } from 'chai';
 import * as app from '../src/server';
 
+const route: String = '/accounts';
+const BAD_ACCOUNT: String = '123456789';
+const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b';
+
+
 describe('GET /', () => {
   it('should return 200 OK', () => {
     return request(app)
@@ -41,10 +46,6 @@ describe('GET /accounts', () => {
 });
 
 describe('GET /accounts/:id', () => {
-  const route: String = '/accounts';
-  const BAD_ACCOUNT: String = '123456789';
-  const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b';
-
   it('should return 404 Not Found', (done) => {
     request(app).get(`${route}/${BAD_ACCOUNT}`)
       .expect(404, done);
@@ -56,10 +57,25 @@ describe('GET /accounts/:id', () => {
   });
 });
 
-describe('DELETE /accounts/:id', () => {
-  const route: String = '/accounts';
-  const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b';
+describe('PUT /accounts/:id', () => {
+  let ACCOUNT_ID: String = '5c5713029bcad21783c6b7ee';
+  it ('should return 404 Not Found', (done) => {
+    request(app).put(`${route}/${BAD_ACCOUNT}`).send({email: 'some@email.com'})
+      .expect(404, done);
+  });
 
+  // it ('should return 400 Bad Request', (done) => {
+  //   request(app).put(`${route}/${ACCOUNT_ID}`).send({email: 'some.email.com'})
+  //     .expect(400, done);
+  // });
+
+  it('should return 204 No Content', (done) => {
+    request(app).put(`${route}/${ACCOUNT_ID}`).send({email: 'tester@gmail.com'})
+      .expect(204, done);
+  });
+});
+
+describe('DELETE /accounts/:id', () => {
   it('should return 204 No Content', (done) => {
     request(app).delete(`${route}/${GOOD_ACCOUNT}`)
       .expect(204, done());
