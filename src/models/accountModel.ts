@@ -1,7 +1,8 @@
 import { isEmail } from 'validator'
 import * as mongoose from 'mongoose'
 
-const uri: string = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/development'
+const uri: string =
+  process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/development'
 
 mongoose.connect(uri, {
   useCreateIndex: true,
