@@ -7,6 +7,9 @@
     "build": "tsc",
     "postinstall": "npm run build",
     "start": "node ./dist/app.js",
+    "prettier:base": "prettier --parser typescript --single-quote",
+    "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.ts\"",
+    "prettier:write": "npm run prettier:base -- --write \"src/**/*.ts\"",
     "mongo:up": "docker-compose -f docker-compose-mongo-only.yml up --force-recreate -d",
     "mongo:down": "docker-compose -f docker-compose-mongo-only.yml down",
     "mongo:logs": "docker-compose -f docker-compose-mongo-only.yml logs -f"
