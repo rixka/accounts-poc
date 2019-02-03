@@ -14,7 +14,7 @@ export const AccountSchema = new mongoose.Schema({
     unique: true,
     required: true,
     validate: {
-      validator: email => validator.isEmail(email),
+      validator: email => isEmail(email),
       message: '{VALUE} is not a valid email',
     },
   },

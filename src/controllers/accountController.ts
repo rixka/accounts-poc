@@ -23,7 +23,7 @@ export let addAccount = (req: Request, res: Response) => {
   let account = new Account(req.body)
   account.save((err: any) => {
     if (err) {
-      res.status(400).json({ error: 'Bad Request', message: req.body })
+      res.status(400).json({ error: 'Bad Request' })
     } else {
       res.status(201).json(account)
     }
