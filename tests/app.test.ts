@@ -1,12 +1,11 @@
-import * as request from 'supertest';
-import {} from 'jest';
-import { expect, should } from 'chai';
-import * as app from '../src/server';
+import * as request from 'supertest'
+import {} from 'jest'
+import { expect, should } from 'chai'
+import * as app from '../src/server'
 
-const route: String = '/accounts';
-const BAD_ACCOUNT: String = '123456789';
-const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b';
-
+const route: String = '/accounts'
+const BAD_ACCOUNT: String = '123456789'
+const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b'
 
 describe('GET /', () => {
   it('should return 200 OK', () => {
@@ -14,10 +13,10 @@ describe('GET /', () => {
       .get('/')
       .expect(200)
       .then(res => {
-        expect(res.body).have.property('message');
-      });
-  });
-});
+        expect(res.body).have.property('message')
+      })
+  })
+})
 
 describe('GET /health', () => {
   it('should return 200 OK', () => {
@@ -25,59 +24,67 @@ describe('GET /health', () => {
       .get('/health')
       .expect(200)
       .then(res => {
-        expect(res.body).have.property('status');
-      });
-  });
-});
+        expect(res.body).have.property('status')
+      })
+  })
+})
 
 describe('GET /random-url', () => {
   it('should return 404 Not Found', () => {
     return request(app)
       .get('/random-url')
       .expect(404)
-  });
-});
+  })
+})
 
 describe('GET /accounts', () => {
-  it('should return 200 OK', (done) => {
-    request(app).get('/accounts')
-      .expect(200, done());
-  });
-});
+  it('should return 200 OK', done => {
+    request(app)
+      .get('/accounts')
+      .expect(200, done())
+  })
+})
 
 describe('GET /accounts/:id', () => {
-  it('should return 404 Not Found', (done) => {
-    request(app).get(`${route}/${BAD_ACCOUNT}`)
-      .expect(404, done);
-  });
+  it('should return 404 Not Found', done => {
+    request(app)
+      .get(`${route}/${BAD_ACCOUNT}`)
+      .expect(404, done)
+  })
 
-  it('should return 200 OK', (done) => {
-    request(app).get(`${route}/${GOOD_ACCOUNT}`)
-      .expect(200, done());
-  });
-});
+  it('should return 200 OK', done => {
+    request(app)
+      .get(`${route}/${GOOD_ACCOUNT}`)
+      .expect(200, done())
+  })
+})
 
 describe('PUT /accounts/:id', () => {
-  let ACCOUNT_ID: String = '5c5713029bcad21783c6b7ee';
-  it ('should return 404 Not Found', (done) => {
-    request(app).put(`${route}/${BAD_ACCOUNT}`).send({email: 'some@email.com'})
-      .expect(404, done);
-  });
+  let ACCOUNT_ID: String = '5c5713029bcad21783c6b7ee'
+  it('should return 404 Not Found', done => {
+    request(app)
+      .put(`${route}/${BAD_ACCOUNT}`)
+      .send({ email: 'some@email.com' })
+      .expect(404, done)
+  })
 
   // it ('should return 400 Bad Request', (done) => {
   //   request(app).put(`${route}/${ACCOUNT_ID}`).send({email: 'some.email.com'})
   //     .expect(400, done);
   // });
 
-  it('should return 204 No Content', (done) => {
-    request(app).put(`${route}/${ACCOUNT_ID}`).send({email: 'tester@gmail.com'})
-      .expect(204, done);
-  });
-});
+  it('should return 204 No Content', done => {
+    request(app)
+      .put(`${route}/${ACCOUNT_ID}`)
+      .send({ email: 'tester@gmail.com' })
+      .expect(204, done)
+  })
+})
 
 describe('DELETE /accounts/:id', () => {
-  it('should return 204 No Content', (done) => {
-    request(app).delete(`${route}/${GOOD_ACCOUNT}`)
-      .expect(204, done());
-  });
-});
+  it('should return 204 No Content', done => {
+    request(app)
+      .delete(`${route}/${GOOD_ACCOUNT}`)
+      .expect(204, done())
+  })
+})
