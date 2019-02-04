@@ -3,8 +3,8 @@ import * as express from 'express'
 import * as mongoose from 'mongoose'
 import * as bodyParser from 'body-parser'
 
-import * as apiController from './controllers/apiController'
-import * as accountController from './controllers/accountController'
+import * as api from './routes/api'
+import * as account from './routes/account'
 
 const uri: string =
   process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/development'
@@ -32,13 +32,13 @@ class App {
 
   // configure api endpoints
   private routes(): void {
-    this.express.get('/', apiController.index)
-    this.express.get('/health', apiController.health)
-    this.express.get('/accounts', accountController.allAccounts)
-    this.express.get('/accounts/:id', accountController.getAccount)
-    this.express.post('/accounts', accountController.addAccount)
-    this.express.put('/accounts/:id', accountController.updateAccount)
-    this.express.delete('/accounts/:id', accountController.deleteAccount)
+    this.express.get('/', api.index)
+    this.express.get('/health', api.health)
+    this.express.get('/accounts', account.allAccounts)
+    this.express.get('/accounts/:id', account.getAccount)
+    this.express.post('/accounts', account.addAccount)
+    this.express.put('/accounts/:id', account.updateAccount)
+    this.express.delete('/accounts/:id', account.deleteAccount)
   }
 }
 
