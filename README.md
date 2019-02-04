@@ -6,9 +6,9 @@ This is a NodeJS application which interfaces with MongoDB to read and update a 
 
 #### Dependencies
 
-_Note: This project assumes **npm** are installed locally._
+_Note: This project assumes **npm**, **docker**, and **docker-compose** are installed locally._
 
-To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) please review the appropriate documentation.
+To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), [Docker](https://docs.docker.com/install) and [Docker Compose](https://docs.docker.com/compose/install/) please review the appropriate documentation.
 
 
 ### Task List
@@ -34,14 +34,14 @@ To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-n
 ### API Considerations
 * GET `/accounts`
 	* Returns a list of accounts
-* GET `/accounts/{id}`
-        * Takes in parameter a "id" and returns the account
+* GET `/accounts/:id`
+	* Takes in parameter a "id" and returns the account 
 * POST `/accounts`
 	* Takes in parameter a "email" 
 	* This call creates a new account
-* PUT `/accounts/{id}`
+* PUT `/accounts/:id`
 	* Takes in parameter a "id" and updates the account
-* DELETE `/accounts/{id}`
+* DELETE `/accounts/:id`
 	* Takes in parameter a "id" and deletes the account
 
 ### MongoDB Database with Docker
@@ -107,7 +107,7 @@ _Note: More information available [here](https://gist.github.com/bastman/5b57ddb
 
 ## Future Work
 
-Warning: Not fit for production, more work required.
+**Warning:** Not fit for production, more work required.
 
 * **LOGGING!!!!!!**
 * **LOGGING!!!!!!**
