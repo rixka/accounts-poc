@@ -1,9 +1,19 @@
 import * as logger from 'morgan'
 import * as express from 'express'
+import * as mongoose from 'mongoose'
 import * as bodyParser from 'body-parser'
 
 import * as apiController from './controllers/apiController'
 import * as accountController from './controllers/accountController'
+
+const uri: string =
+  process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/development'
+
+mongoose.connect(uri, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+})
+
 
 class App {
   public express: express.Application
