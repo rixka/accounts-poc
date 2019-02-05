@@ -32,13 +32,13 @@ class App {
 
   // configure api endpoints
   private routes(): void {
-    this.express.get('/', api.index)
-    this.express.get('/health', api.health)
-    this.express.get('/accounts', account.allAccounts)
-    this.express.get('/accounts/:id', account.getAccount)
-    this.express.post('/accounts', account.addAccount)
-    this.express.put('/accounts/:id', account.updateAccount)
-    this.express.delete('/accounts/:id', account.deleteAccount)
+    this.express.get('/api/', api.index)
+    this.express.get('/api/health', api.health)
+    this.express.get('/api/accounts', account.allAccounts)
+    this.express.get('/api/accounts/:id', account.getAccount)
+    this.express.post('/api/accounts', account.addAccount)
+    this.express.put('/api/accounts/:id', account.updateAccount)
+    this.express.delete('/api/accounts/:id', account.deleteAccount)
   }
 }
 

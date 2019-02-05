@@ -32,16 +32,16 @@ To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-n
 
 
 ### API Considerations
-* GET `/accounts`
+* GET `/api/accounts`
 	* Returns a list of accounts
-* GET `/accounts/:id`
+* GET `/api/accounts/:id`
 	* Takes in parameter a "id" and returns the account 
-* POST `/accounts`
+* POST `/api/accounts`
 	* Takes in parameter a "email" 
 	* This call creates a new account
-* PUT `/accounts/:id`
+* PUT `/api/accounts/:id`
 	* Takes in parameter a "id" and updates the account
-* DELETE `/accounts/:id`
+* DELETE `/api/accounts/:id`
 	* Takes in parameter a "id" and deletes the account
 
 ### MongoDB Database with Docker
@@ -88,7 +88,10 @@ Once the API container is running you can curl requests or navigate with the bro
 #### Example - curl
 ```
 # health check
-curl -v http://localhost:3000/health
+curl -v http://localhost:3000/api/health
+
+# list accounts
+curl -v http://localhost:3000/api/accounts
 ```
 
 ### Quick testing

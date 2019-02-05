@@ -3,7 +3,7 @@ import {} from 'jest'
 import { expect, should } from 'chai'
 import * as app from '../src/server'
 
-const route: String = '/accounts'
+const ROUTE: String = '/api/accounts'
 const INVALID_ACCOUNT: String = '123456789'
 const GOOD_ACCOUNT: String = '5c56ff552491e1954be2357b'
 const BAD_ACCOUNT: String = '5c56ff552491e1924be2357b'
@@ -11,7 +11,7 @@ const BAD_ACCOUNT: String = '5c56ff552491e1924be2357b'
 describe('GET /', () => {
   it('should return 200 OK', () => {
     return request(app)
-      .get('/')
+      .get('/api/')
       .expect(200)
       .then(res => {
         expect(res.body).have.property('message')
@@ -22,7 +22,7 @@ describe('GET /', () => {
 describe('GET /health', () => {
   it('should return 200 OK', () => {
     return request(app)
-      .get('/health')
+      .get('/api/health')
       .expect(200)
       .then(res => {
         expect(res.body).have.property('status')
@@ -33,7 +33,7 @@ describe('GET /health', () => {
 describe('GET /random-url', () => {
   it('should return 404 Not Found', done => {
     request(app)
-      .get('/random-url')
+      .get('/api/random-url')
       .expect(404, done())
   })
 })
@@ -41,7 +41,7 @@ describe('GET /random-url', () => {
 describe('GET /accounts', () => {
   it('should return 200 OK', done => {
     request(app)
-      .get('/accounts')
+      .get(ROUTE)
       .expect(200, done())
   })
 })
@@ -49,19 +49,19 @@ describe('GET /accounts', () => {
 describe('GET /accounts/:id', () => {
   it('should return 404 Not Found', done => {
     request(app)
-      .get(`${route}/${INVALID_ACCOUNT}`)
+      .get(`${ROUTE}/${INVALID_ACCOUNT}`)
       .expect(404, done)
   })
 
   it('should return 404 Not Found', done => {
     request(app)
-      .get(`${route}/${BAD_ACCOUNT}`)
+      .get(`${ROUTE}/${BAD_ACCOUNT}`)
       .expect(404, done)
   })
 
   it('should return 200 OK', done => {
     request(app)
-      .get(`${route}/${GOOD_ACCOUNT}`)
+      .get(`${ROUTE}/${GOOD_ACCOUNT}`)
       .expect(200, done())
   })
 })
@@ -69,21 +69,21 @@ describe('GET /accounts/:id', () => {
 describe('POST /accounts', () => {
   it('should return 400 Bad Request', done => {
     request(app)
-      .post(route)
+      .post(ROUTE)
       .send({ email: 'some@email.com' })
       .expect(400, done())
   })
 
   it('should return 400 Bad Request', done => {
     request(app)
-      .post(route)
+      .post(ROUTE)
       .send({ email: 'some.email.com' })
       .expect(400, done)
   })
 
   it('should return 201 Created', done => {
     request(app)
-      .post(route)
+      .post(ROUTE)
       .send({ email: 'tester@gmail.com' })
       .expect(201, done())
   })
@@ -93,21 +93,21 @@ describe('PUT /accounts/:id', () => {
   let ACCOUNT_ID: String = '5c5713029bcad21783c6b7ee'
   it('should return 404 Not Found', done => {
     request(app)
-      .put(`${route}/${INVALID_ACCOUNT}`)
+      .put(`${ROUTE}/${INVALID_ACCOUNT}`)
       .send({ email: 'some@email.com' })
       .expect(404, done)
   })
 
   it('should return 400 Bad Request', done => {
     request(app)
-      .put(`${route}/${ACCOUNT_ID}`)
+      .put(`${ROUTE}/${ACCOUNT_ID}`)
       .send({ email: 'some.email.com' })
       .expect(400, done)
   })
 
   it('should return 204 No Content', done => {
     request(app)
-      .put(`${route}/${ACCOUNT_ID}`)
+      .put(`${ROUTE}/${ACCOUNT_ID}`)
       .send({ email: 'tester@gmail.com' })
       .expect(204, done)
   })
@@ -116,13 +116,13 @@ describe('PUT /accounts/:id', () => {
 describe('DELETE /accounts/:id', () => {
   it('should return 404 Not Found', done => {
     request(app)
-      .delete(`${route}/${INVALID_ACCOUNT}`)
+      .delete(`${ROUTE}/${INVALID_ACCOUNT}`)
       .expect(404, done())
   })
 
   it('should return 204 No Content', done => {
     request(app)
-      .delete(`${route}/${GOOD_ACCOUNT}`)
+      .delete(`${ROUTE}/${GOOD_ACCOUNT}`)
       .expect(204, done())
   })
 })
