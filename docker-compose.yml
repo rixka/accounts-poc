@@ -1,15 +1,17 @@
 version: "3"
 
 services:
-  api:
+  app:
     build: .
     ports:
-      - "3000:3000"
+      - 3000:3000
+    environment:
+     - "MONGO_URI=mongodb://mongodb:27017/development"
 
   mongodb:
     image: mvertes/alpine-mongo
     ports:
-      - "27017:27017"
+      - 27017:27017
 
   mongo-seed:
     build: ./db/mongodb-seed
