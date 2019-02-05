@@ -4,7 +4,8 @@
   "description": "Accounts rest API service using TypeScript, Node.js, Express, MongoDB, and Mongoose.",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
+    "preinstall": "cd client && npm install",
+    "build": "tsc && cd client && npm run build",
     "postinstall": "npm run build",
     "test": "jest --forceExit",
     "start": "node ./dist/server.js",
@@ -56,7 +57,7 @@
     "mapCoverage": true,
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/*.{ts}",
+      "src/**/*.{ts}",
       "!**/node_modules/**",
       "!**/vendor/**",
       "!**/coverage/**"
