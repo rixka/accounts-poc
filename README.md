@@ -46,6 +46,7 @@ To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-n
 
 ### MongoDB Database with Docker
 For the purpose of this exercise, I’m going to be using docker in order to quickly get a mongodb instance up and running on my local development machine.
+This is useful if intending to work on the application locally without running the whole setup in docker. 
 
 ```shell
 npm run mongo:up
@@ -65,6 +66,8 @@ docker-compose -f docker-compose-mongo-only.yml down
 ```
 
 ### Quick Start with Docker
+To setup a dockerised MongoDB and Application system run `npm run docker:up` and navigate to `http://localhost:3000/`.
+If you would like to view the docker logs you can run `npm run docker:logs`.
 
 ```shell
 npm run docker:up
