@@ -32,16 +32,16 @@ To install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-n
 
 
 ### API Considerations
-* GET `/accounts`
+* GET `/api/accounts`
 	* Returns a list of accounts
-* GET `/accounts/:id`
+* GET `/api/accounts/:id`
 	* Takes in parameter a "id" and returns the account 
-* POST `/accounts`
+* POST `/api/accounts`
 	* Takes in parameter a "email" 
 	* This call creates a new account
-* PUT `/accounts/:id`
+* PUT `/api/accounts/:id`
 	* Takes in parameter a "id" and updates the account
-* DELETE `/accounts/:id`
+* DELETE `/api/accounts/:id`
 	* Takes in parameter a "id" and deletes the account
 
 ### MongoDB Database with Docker
@@ -83,12 +83,15 @@ docker-compose up
 docker-compose down
 ```
 
-Once the API container is running you can curl requests or navigate with the browser `http://localhost:3000/health`.
+Once the App container is running you can curl requests or navigate with the browser `http://localhost:3000/`.
 
-#### Example - curl
+#### API Example - curl
 ```
 # health check
-curl -v http://localhost:3000/health
+curl -v http://localhost:3000/api/health
+
+# list accounts
+curl -v http://localhost:3000/api/accounts
 ```
 
 ### Quick testing
@@ -112,6 +115,8 @@ _Note: More information available [here](https://gist.github.com/bastman/5b57ddb
 * **LOGGING!!!!!!**
 * **LOGGING!!!!!!**
 * And more **logging** - possibly look into integrating sentry.
+* OAuth 2.0 or any authentication.
+* Error handling on front end to infom the user any errors.
 * GraphQL.
 * Add possibility to paginate accounts.
 * Redis.
@@ -121,7 +126,6 @@ _Note: More information available [here](https://gist.github.com/bastman/5b57ddb
 * Unit tests with mocks bypassing Express and MongoDB.
 * Breakdown the code into more modular components.
 * The tests should continue to grow (coverage is ~70%), separating them out may become necessary.
-* OAuth 2.0.
-* JSON transformation on the outputs, the `_id` is a bit unsightly.
+* Any basic front end tests.
 
 _Note: Feedback welcomed._

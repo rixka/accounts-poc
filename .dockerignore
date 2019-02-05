@@ -1,0 +1,7 @@
+db
+dist
+tests
+node_modules
+
+prettier.config.js
+docker*.yml
