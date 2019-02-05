@@ -14,7 +14,6 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
 })
 
-
 class App {
   public express: express.Application
 
